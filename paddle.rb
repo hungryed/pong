@@ -1,6 +1,8 @@
 class Paddle
   WIDTH = 16
   HEIGHT = 96
+  SPEED = 6
+
   attr_reader :side, :y
   def initialize(side)
     @side = side
@@ -25,7 +27,7 @@ class Paddle
   end
 
   def y2
-    y + HEIGHT
+    y1 + HEIGHT
   end
 
   def draw(window)
@@ -37,6 +39,22 @@ class Paddle
       x2, y2, color,
       x2, y1, color,
      )
+  end
+
+  def up!
+    @y -= SPEED
+
+    if y1 < 0 
+      @y = HEIGHT/2
+    end
+  end
+
+  def down!
+    @y += SPEED
+
+    if y2 > Pong::HEIGHT
+      @y = Pong::HEIGHT - HEIGHT/2
+    end
   end
 
 end
