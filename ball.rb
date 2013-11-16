@@ -7,6 +7,7 @@ class Ball
     @y = Pong::HEIGHT/2
 
     @angle= rand(130) + 30
+    @angle *= -1 if rand > 0.5
     @speed = 8
   end 
 
@@ -48,6 +49,14 @@ class Ball
       x2, y2, color,
       x2, y1, color,
      )
+  end
+
+  def off_left?
+    x1 < 0
+  end
+
+  def off_right?
+    x2 > Pong::WIDTH
   end
 
 
