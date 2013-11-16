@@ -3,10 +3,20 @@ class Paddle
   HEIGHT = 96
   SPEED = 6
 
-  attr_reader :side, :y
-  def initialize(side)
+  attr_reader :side, :y, :ai
+  alias ai? ai 
+  def initialize(side, ai = false)
+    @ai = ai
     @side = side
     @y = Pong::HEIGHT/2
+  end
+
+  def ai_move!(ball)
+    if y > ball.y
+      up!
+    else
+      down!
+    end
   end
 
   def x1
@@ -55,6 +65,9 @@ class Paddle
     if y2 > Pong::HEIGHT
       @y = Pong::HEIGHT - HEIGHT/2
     end
+
   end
+
+
 
 end
